@@ -103,8 +103,43 @@ Scraping logic can be adapted by changing the `scrape_domain()` function.
 
 Additional parsing steps can be added to extract and structure data before sending to ChatGPT.
 
-## Extending the Scraper
+## To Do
+- Batch requests to OpenAI API to avoid getting rate-limited due to free tier limitations.
 
-New metrics can be extracted by updating the prompt and extending the output schema.
 
-Advanced functionality like scraping JS-rendered pages, sitemaps crawling, and async requests can be added to scale the scraper.
+
+## Extending the solution
+
+#### Advanced Data extraction
+- Scrape dynamic content using a headless browser or JavaScript engine to execute scripts on page and render HTML content before parsing with BeautifulSoup.
+
+- Extract data from other pages or similar pages with varying names.
+
+#### Additional Data Sources
+
+- Incorporate data from Crunchbase to get more structured founder, funding, and category data
+- Use Google search results to find additional pages and sources about the company and founders
+- Access Alexa or SimilarWeb to get traffic and engagement metrics for each site
+
+#### More Advanced Extraction
+
+- Use more advanced NLP techniques like named entity recognition to identify founders, products, etc.
+- Build a categorization model to classify companies into sectors like health, edtech, etc.
+- Use sentiment analysis to gauge positive/negative language on site as a proxy for company reception
+
+#### Additional Analysis
+
+- Expand criteria analysis to include more categories and finer granularity
+- Include scoring system that ranks companies across multiple categories and metrics
+- Visualize company ratings and extracted information in a dashboard
+
+
+#### Testing & Maintenance
+
+- Write unit tests for individual modules 
+- Implement integration testing framework across full data pipeline
+- Build repeatable processes to catch site changes and maintain scraper 
+
+
+## Additional Questions
+Solutions to the additional questions can be found [here](https://docs.google.com/document/d/1_H4we6BujPrRZcEX_vAKzPGtnj-47mVCL9JaoQ-iNVg/edit?usp=sharing).

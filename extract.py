@@ -11,7 +11,7 @@ api_key = "YOUR_OPENAI_API_KEY"
 openai.api_key = api_key
 
 # Define the list of domains to extract data from
-domains = ["https://tonestro.com/", "https://sendtrumpet.com/", "https://www.prewave.com/", "https://twinn.health/", "https://kokoon.io/"]
+domains = ["https://tonestro.com/", "https://sendtrumpet.com/", "https://www.prewave.com/"]
 
 # Define the user agent header
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"
@@ -109,3 +109,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+
+
+
