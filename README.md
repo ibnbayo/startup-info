@@ -1,9 +1,9 @@
-Startup Information Script
+Startup Info App
 ===============
 
 ## Overview
 
-This script extracts key information from startup websites about their offerings and founders. It utilizes web scraping and natural language processing to analyze page content and generate information for investors.
+This provides investment insights for angel investors. It extracts key information from startup websites about their offerings and founders, and utilizes web scraping and natural language processing to analyse content.
 
 Getting it running
 ------------------
@@ -141,5 +141,7 @@ Additional parsing steps can be added to extract and structure data before sendi
 - Build repeatable processes to catch site changes and maintain scraper 
 
 
-## Additional Questions
-Solutions to the additional questions can be found [here](https://docs.google.com/document/d/1_H4we6BujPrRZcEX_vAKzPGtnj-47mVCL9JaoQ-iNVg/edit?usp=sharing).
+## Exploratory
+
+- Combine internet data with information from parsed pitch decks in relational database for structured scouting
+- Create visual representations (graphs, charts) based on data obtained, aiding investors in quick comprehension
