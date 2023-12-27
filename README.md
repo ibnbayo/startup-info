@@ -72,17 +72,17 @@ python main.py
 
 The script accepts a list of domain names to scrape. It will visit each domain's home page and about page (if found) to extract text content from all `<p>` tags.
 
-This extracted text is then sent to the ChatGPT API with a prompt asking for the company's offerings and founder names. 
+This extracted text is then sent to the LLM API with a prompt asking for the company's offerings and founder names. 
 
-ChatGPT's response is printed for each domain.
+LLM's response is printed for each domain.
 
 The script runs the following steps:
 
 1. Accepts list of company domains
 2. Scrapes home page and about page (if found) 
 3. Extracts text content from `<p>` tags
-4. Sends extracted text to ChatGPT API
-5. Prints ChatGPT response for each domain
+4. Sends extracted text to LLM API
+5. Prints LLM response for each domain
 
 
 Domains are hardcoded in the script. Edit the `domains` list to scrape different sites.
@@ -91,13 +91,13 @@ The OpenAI API key should be set in the script.
 
 ## Output
 
-The output will contain ChatGPT's response for each domain with extracted company info in JSON format.
+The output will contain the LLM's response for each domain with extracted company info in JSON format.
 
 Any errors during scraping will be logged.
 
 ## Customization
 
-The prompt sent to ChatGPT can be customized by editing the `message_log` payload in `send_message()`.
+The prompt sent to LLM can be customized by editing the `message_log` payload in `send_message()`.
 
 Scraping logic can be adapted by changing the `scrape_domain()` function.
 
