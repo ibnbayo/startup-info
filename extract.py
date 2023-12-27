@@ -16,7 +16,7 @@ domains = ["https://tonestro.com/", "https://sendtrumpet.com/", "https://www.pre
 # Define the user agent header
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"
 
-# Create a session object with the user agent header
+# Create session object with user agent header
 session = requests.Session()
 session.headers.update({"User-Agent": USER_AGENT})
 
@@ -25,7 +25,7 @@ results = []
 
 def scrape_domain(domain):
     """Scrapes the domain and returns a string of text from all p tags on the home page and the about page."""
-    # Make a request to the domain and get the HTML content
+    # Make a request to the domain and get HTML content
     try:
         response = session.get(domain)
         response.raise_for_status()
@@ -34,7 +34,7 @@ def scrape_domain(domain):
         logging.error(f"Error while requesting {domain}: {e}")
         return None
 
-    # Parse the HTML content with BeautifulSoup
+    # Parse HTML content with BeautifulSoup
     soup = BeautifulSoup(html, "lxml")
 
     # Find all p tags on the page and extract their text
@@ -55,7 +55,7 @@ def scrape_domain(domain):
             logging.error(f"Error while requesting {url}: {e}")
             return p_text
 
-        # Parse the HTML content with BeautifulSoup
+        # Parse HTML content with BeautifulSoup
         soup = BeautifulSoup(html, "lxml")
 
         # Find all p tags on the page and extract their text
@@ -77,25 +77,25 @@ def send_message(message_log):
         temperature=0.7,        
     )
 
-    # Find the first response from the chatbot that has text in it
+    # Find first response from LLM that has text in it
     for choice in response.choices:
         if "text" in choice:
             return choice.text
 
-    # If no response with text is found, return the first response's content
+    # If no response with text is found, return first response's content
     return response.choices[0].message.content
 
 def main():
     """Main function that scrapes each domain and sends the result to the chatbot."""
     for domain in domains:
-        # Scrape the domain and get the text from p tags
+        # Extract data from domain and get text from p tags
         p_text = scrape_domain(domain)
 
-        # If the text is not None, append it to the results list
+        # If text is not None, append it to results list
         if p_text:
             results.append(p_text)
 
-    # For each result, send it to the chatbot and print the response
+    # For each result, send it for LLM analysis and print response
     for i in range(len(results)):
         user_input = results[i]
 
