@@ -3,7 +3,7 @@ Startup Info App
 
 ## Overview
 
-This provides investment insights for angel investors. It extracts key information from startup websites about their offerings and founders, and utilizes web scraping and natural language processing to analyse content.
+This provides investment insights for angel investors. It extracts key information from startup websites about their offerings and founders, and utilises web scraping and natural language processing to analyse content.
 
 Getting it running
 ------------------
