@@ -4,19 +4,19 @@ import re
 import openai
 import logging
 
-# Set up logging
+
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 
 api_key = "YOUR_OPENAI_API_KEY"
 openai.api_key = api_key
 
-# Define the list of domains to extract data from
+
 domains = ["https://tonestro.com/", "https://sendtrumpet.com/", "https://www.prewave.com/"]
 
-# Define the user agent header
+
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"
 
-# Create session object with user agent header
+
 session = requests.Session()
 session.headers.update({"User-Agent": USER_AGENT})
 
@@ -25,7 +25,7 @@ results = []
 
 def scrape_domain(domain):
     """Scrapes the domain and returns a string of text from all p tags on the home page and the about page."""
-    # Make a request to the domain and get HTML content
+    
     try:
         response = session.get(domain)
         response.raise_for_status()
@@ -34,19 +34,19 @@ def scrape_domain(domain):
         logging.error(f"Error while requesting {domain}: {e}")
         return None
 
-    # Parse HTML content with BeautifulSoup
+    
     soup = BeautifulSoup(html, "lxml")
 
-    # Find all p tags on the page and extract their text
+    
     p_tags = soup.find_all("p")
     p_text = "\n".join([tag.get_text() for tag in p_tags])
 
-    # Find the link that contains the word "about" in the text or href attribute
+   
     link = soup.find("a", text=re.compile("about", re.I), href=re.compile("about", re.I))
     if link:
-        # Get the full URL of the link by joining it with the domain
+        
         url = requests.compat.urljoin(domain, link["href"])
-        # Make another request to the URL and get the HTML content
+        
         try:
             response = session.get(url)
             response.raise_for_status()
@@ -55,10 +55,10 @@ def scrape_domain(domain):
             logging.error(f"Error while requesting {url}: {e}")
             return p_text
 
-        # Parse HTML content with BeautifulSoup
+        
         soup = BeautifulSoup(html, "lxml")
 
-        # Find all p tags on the page and extract their text
+        
         p_tags = soup.find_all("p")
         p_text += "\n".join([tag.get_text() for tag in p_tags])
 
@@ -77,25 +77,25 @@ def send_message(message_log):
         temperature=0.7,        
     )
 
-    # Find first response from LLM that has text in it
+    
     for choice in response.choices:
         if "text" in choice:
             return choice.text
 
-    # If no response with text is found, return first response's content
+    
     return response.choices[0].message.content
 
 def main():
     """Main function that scrapes each domain and sends the result to the chatbot."""
     for domain in domains:
-        # Extract data from domain and get text from p tags
+        
         p_text = scrape_domain(domain)
 
-        # If text is not None, append it to results list
+        
         if p_text:
             results.append(p_text)
 
-    # For each result, send it for LLM analysis and print response
+    
     for i in range(len(results)):
         user_input = results[i]
 
